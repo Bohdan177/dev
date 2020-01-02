@@ -75,7 +75,7 @@ bot.on('callback_query', query => {
             'Вы покупаете: AuDi',
             'Описание: Best car ever',
             'payload',
-            '410694247:TEST:29bec3ba-9c21-4356-861a-e42acefbdbbb',
+            '410694247:TEST:4a81dbfe-c719-4750-99e5-2a20365e2045',
             'Some_RANDOM_KEY',
             'UAH',
             [
@@ -87,33 +87,14 @@ bot.on('callback_query', query => {
             {
                 photo_url: 'https://i.ytimg.com/vi/2cebMGt8R_M/maxresdefault.jpg'
             }
-
-
         )
+        const error_message = 'Hello'
+        // ошибка на 94 строке. Если убрать ф-ю bot.answerPre..., то в консоль выводит сообщение. Значит событие pre_checkout query работает.
+        // ошибка в синтаксисе..
+        bot.on('pre_checkout_query', bot.answerPreCheckoutQuery(true, error_message('heello')), console.info('Pre-checkout query done'))
+        bot.on('successful_payment', () => console.log('Woohoo'))
 
     }
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+bot.on("polling_error", (err) => console.log('Here error=> ' + err));
