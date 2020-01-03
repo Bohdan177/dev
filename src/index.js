@@ -92,7 +92,8 @@ bot.on('callback_query', query => {
         // ошибка на 94 строке. Если убрать ф-ю bot.answerPre..., то в консоль выводит сообщение. Значит событие pre_checkout query работает.
         // ошибка в синтаксисе..
         // bot.on('pre_checkout_query', bot.answerPreCheckoutQuery(preCheckoutQueryId, true), console.info('Pre-checkout query done'))
-        bot.on('pre_checkout_query', () => { bot.answerPreCheckoutQuery(query.id), console.info('Pre-checkout query done') })
+        const preCheckoutQueryId = query.id
+        bot.on('pre_checkout_query', () => { bot.answerPreCheckoutQuery(preCheckoutQueryId, { ok: true }, { error_message: 'error' }), console.info('Pre-checkout query done') })
         bot.on('successful_payment', () => console.log('Woohoo'))
 
     }
